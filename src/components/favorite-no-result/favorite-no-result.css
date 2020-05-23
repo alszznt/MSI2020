@@ -1,0 +1,29 @@
+
+.favorite-no-result{
+  display: grid;
+  grid-template-columns: auto max-content;
+  padding-left: 40px;
+}
+.favorite-no-result-text{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  color: #ABABAB;
+}
+.favorite-no-result-cat{
+  background-image: url(../../images/cat.svg);
+  background-size: cover;
+  width: 81px;
+  height: 133px;
+}
+@media (max-width: 1023px) {
+  .favorite-no-result{
+    padding-left: 40px;
+  }
+}
+@media (max-width: 767px) {
+  .favorite-no-result{
+    padding-left: 20px;
+  }
+}

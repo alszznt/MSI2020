@@ -1,0 +1,116 @@
+.favorite-card{
+  background: #FFFFFF;
+  border: 1px solid #F8F8F8;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 40px auto;
+  align-items: center;
+  grid-column-gap: 20px;
+}
+.favorite-message{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: #F8F8F8;
+}
+.message-icon{
+  background-image: url(../../images/message.svg);
+  background-size: cover;
+  width: 20px;
+  height: 18px;
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, 65%);
+}
+.favorite-card-content{
+  display: grid;
+  grid-row-gap: 20px;
+}
+.favorite-like{
+  display: grid;
+  grid-template-columns: auto min-content;
+}
+.favorite-icon{
+  background-image: url(../../images/favorite.svg);
+  background-size: cover;
+  width: 20px;
+  height: 17px;
+  cursor: pointer;
+}
+.favorite-favorite-icon{
+  background-image: url(../../images/favorite-active.svg);
+  background-size: cover;
+  width: 20px;
+  height: 17px;
+  cursor: pointer;
+}
+.favorite-favorite-id-value{
+  display: grid;
+  grid-row-gap: 10px;
+}
+.favorite-id-value{
+  display: grid;
+  grid-row-gap: 5px;
+}
+.favorite-id{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  color: #ABABAB;
+  display: grid;
+  grid-template-columns: max-content min-content;
+  grid-column-gap: 5px;
+}
+.share-icon{
+  background-image: url(../../images/link.svg);
+  background-size: cover;
+  width: 10px;
+  height: 10px;
+  align-self: center;
+}
+.favorite-id-color{
+  color: #8EA7FF;
+}
+.favorite-value{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  color: #333333;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  line-break: strict;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+.favorite-updated-and-category{
+  display: grid;
+  grid-template-columns: auto min-content;
+}
+.favorite-updatedAt{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 14px;
+  color: #ABABAB;
+  align-self: center;
+}
+.favorite-category{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #333333;
+  background: #FFFFFF;
+  border-radius: 6px;
+  padding: 6px 20px;
+}

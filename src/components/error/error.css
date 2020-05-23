@@ -1,0 +1,28 @@
+.error{
+  padding: 40px;
+  background: #F8F8F8;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 40px auto;
+  grid-gap: 20px;
+}
+.error-cat{
+  padding: 8px;
+  background: #fff;
+  border-radius: 20px;
+}
+.cat-icon{
+  background-image: url(../../images/cat icon.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+}
+.error-text{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  color: #ABABAB;
+  align-self: center;
+}

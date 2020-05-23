@@ -1,0 +1,9 @@
+a{
+  text-decoration: none;
+}
+.joke-body{
+  display: grid;
+  grid-row-gap: 20px;
+  width: 100%;
+  padding-bottom: 40px;
+}
