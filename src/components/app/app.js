@@ -54,8 +54,7 @@ export default class App extends Component {
       }
 
       const newArr = [
-        newJoke,
-        ...allJoke
+        newJoke
       ];
 
       return {
@@ -71,15 +70,14 @@ export default class App extends Component {
     if (newJoke.length === 0){
       this.setState({
         searchNoResult: true,
-        error: true
+        error: true,
       });
     }else {
 
       this.setState(({ allJoke }) => {
 
         const newArr = [
-          ...newJoke,
-          ...allJoke
+          ...newJoke
         ];
 
         return {
@@ -139,7 +137,8 @@ export default class App extends Component {
     this.setState({
       loading: true,
       error: false,
-      searchNoResult: false
+      searchNoResult: false,
+      allJoke: []
     });
 
     if ( this.state.checked === "Random" )  {
