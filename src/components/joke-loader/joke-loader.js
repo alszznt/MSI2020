@@ -4,9 +4,7 @@ import './joke-loader.css';
 
 const JokeLoader = () => {
   return (
-    <div className="joke-loader">
-
-    </div>
+    <div className="joke-loader" />
   );
 };
 

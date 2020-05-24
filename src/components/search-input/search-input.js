@@ -13,7 +13,7 @@ export default class SearchInput extends Component {
 
     if ( searchError ){
       className += " error-search-input"
-      placeholder = "less than three symbols"
+      placeholder = "Enter at least 3 symbols"
     }
 
     if ( checked === "Search" ){

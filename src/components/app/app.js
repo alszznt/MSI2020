@@ -12,6 +12,26 @@ import './app.css';
 
 export default class App extends Component {
 
+  componentDidMount(){
+    this.apiService
+      .getAllCategories()
+      .then((categoryList) => {
+        this.setState({
+          categoryList
+        });
+      });
+  };
+
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('favorite', JSON.stringify(nextState.favorite));
+  };
+
+  UNSAFE_componentWillMount() {
+    localStorage.getItem('favorite') && this.setState ({
+      favorite: JSON.parse(localStorage.getItem('favorite'))
+    });
+  };
+
   apiService = new ApiService();
 
   state = {
@@ -26,21 +46,6 @@ export default class App extends Component {
     loading: false,
     error: false,
     defaultChecked: true
-  };
-
-  onCategoryChange = ( category ) => {
-    this.setState(({ selectedCategories }) => {
-      return {
-        selectedCategories: category
-      };
-    });
-  };
-
-  onError = (err) =>{
-    this.setState({
-      error: true,
-      loading: false
-    });
   };
 
   onJokeLoaded = (newJoke) => {
@@ -65,7 +70,7 @@ export default class App extends Component {
       }
 
     });
-  }
+  };
 
   onSearchJokeLoaded = (newJoke) => {
 
@@ -91,7 +96,14 @@ export default class App extends Component {
         jokeLoading: false
       });
     }
-  }
+  };
+
+  onError = (err) =>{
+    this.setState({
+      error: true,
+      loading: false
+    });
+  };
 
   onRandomJoke = () => {
     this.apiService
@@ -119,10 +131,24 @@ export default class App extends Component {
       .getSearchJoke( this.state.searchValue )
       .then(this.onSearchJokeLoaded)
       .catch(this.onError);
-  }
+  };
 
-  changeCategory = (selectedCategories) => {
+  onCategoryChange = ( category ) => {
+    this.setState(({ selectedCategories }) => {
+      return {
+        selectedCategories: category
+      };
+    });
+  };
+
+  changeCategory = ( selectedCategories ) => {
     this.setState({ selectedCategories });
+  };
+
+  onCategorySelected = (category) => {
+    this.setState({
+      selectedCategory: category
+    });
   };
 
   onChecked = (checked) => {
@@ -139,12 +165,6 @@ export default class App extends Component {
     }
   };
 
-  onCategorySelected = (category) => {
-    this.setState({
-      selectedCategory: category
-    });
-  };
-
   onSubmit = (e) => {
 
     e.preventDefault();
@@ -152,39 +172,47 @@ export default class App extends Component {
     this.setState({
       loading: true,
       error: false,
-      searchNoResult: false,
-      allJoke: []
+      searchNoResult: false
     });
 
     if ( this.state.checked === "Random" )  {
-      this.onRandomJoke()
+          this.setState({
+            allJoke: []
+          });
+          this.onRandomJoke()
     }
     if ( this.state.checked === "From categories" ) {
-      if ( !this.state.selectedCategory ){
-        this.setState({
-          selectedCategory: this.state.categoryList[0]
-        });
-        this.onCategoriesJoke(this.state.categoryList[0]);
-      }
-      else {
-        this.onCategoriesJoke();
-      }
+          this.setState({
+            allJoke: []
+          });
+          if ( !this.state.selectedCategory ){
+                  this.setState({
+                    selectedCategory: this.state.categoryList[0]
+                  });
+                  this.onCategoriesJoke(this.state.categoryList[0]);
+          }
+          else {
+                  this.onCategoriesJoke();
+          }
     }
     if ( this.state.checked === "Search" ) {
-      if (this.state.searchValue.length < 3){
-        this.setState({
-          searchValue: '',
-          searchError: true,
-          loading: false
-        });
-      }else {
-        this.onSearchJoke();
-        this.setState({
-          searchValue: '',
-          searchError: false,
-          loading: false
-        });
-      }
+          if (this.state.searchValue.length < 3){
+                this.setState({
+                  searchValue: '',
+                  searchError: true,
+                  loading: false
+                });
+          }else {
+                this.setState({
+                  allJoke: []
+                });
+                this.onSearchJoke();
+                this.setState({
+                  searchValue: '',
+                  searchError: false,
+                  loading: false
+                });
+          }
     }
 
   };
@@ -256,29 +284,7 @@ export default class App extends Component {
     this.setState(({ favorite }) => {
       favorite = true
     });
-  }
-
-  UNSAFE_componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('favorite', JSON.stringify(nextState.favorite));
   };
-
-  UNSAFE_componentWillMount() {
-    localStorage.getItem('favorite') && this.setState ({
-      favorite: JSON.parse(localStorage.getItem('favorite'))
-    });
-  };
-
-  componentDidMount(){
-    this.apiService
-      .getAllCategories()
-      .then((categoryList) => {
-        this.setState({
-          categoryList
-        });
-      });
-  }
-
-
 
   render(){
 
@@ -286,31 +292,31 @@ export default class App extends Component {
 
     return(
       <div className = "app">
-        <div className = "app-content">
-          <Header menuOpen = { menuOpen }
-                  onFavoriteOpen = { this.onFavoriteOpen } />
-          <div className = "app-jokes">
-            <AppTitles />
-            <JokeForm onChecked = { this.onChecked }
-                      onCategorySelected = { this.onCategorySelected }
-                      state = { this.state }
-                      onSubmit = { this.onSubmit }
-                      onLabelChange = { this.onLabelChange }/>
+            <div className = "app-content">
+                    <Header menuOpen = { menuOpen }
+                            onFavoriteOpen = { this.onFavoriteOpen } />
+                    <div className = "app-jokes">
+                            <AppTitles />
+                            <JokeForm onChecked = { this.onChecked }
+                                      onCategorySelected = { this.onCategorySelected }
+                                      state = { this.state }
+                                      onSubmit = { this.onSubmit }
+                                      onLabelChange = { this.onLabelChange }/>
 
-            <JokeBody allJoke = { allJoke }
-                      onFavoriteJokeAdded = { this.onFavoriteJokeAdded }
+                            <JokeBody allJoke = { allJoke }
+                                      onFavoriteJokeAdded = { this.onFavoriteJokeAdded }
+                                      deleteFavoriteJoke = { this.deleteFavoriteJoke }
+                                      loading = { loading }
+                                      error = { error }
+                                      searchNoResult = { searchNoResult }
+                                      favorite = { favorite }
+                                      setFavorite = { this.setFavorite } />
+                    </div>
+            </div>
+            <Favorite menuOpen = { menuOpen }
+                      onFavoriteClose = { this.onFavoriteClose }
                       deleteFavoriteJoke = { this.deleteFavoriteJoke }
-                      loading = { loading }
-                      error = { error }
-                      searchNoResult = { searchNoResult }
-                      favorite = { favorite }
-                      setFavorite = { this.setFavorite } />
-          </div>
-        </div>
-        <Favorite menuOpen = { menuOpen }
-                  onFavoriteClose = { this.onFavoriteClose }
-                  deleteFavoriteJoke = { this.deleteFavoriteJoke }
-                  favorite = { favorite } />
+                      favorite = { favorite } />
       </div>
     );
   };

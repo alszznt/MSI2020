@@ -4,26 +4,26 @@ import { act } from "react-dom/test-utils";
 
 import Error from './error.js';
 
-let container = null;
+let errorContainer = null;
 beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
+  errorContainer = document.createElement("div");
+  document.body.appendChild(errorContainer);
 });
 
 afterEach(() => {
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
+  unmountComponentAtNode(errorContainer);
+  errorContainer.remove();
+  errorContainer = null;
 });
 
 it("error Massage", () => {
   act(() => {
-    render(<Error value = "Something went wrong" />, container);
+    render(<Error value = "Something went wrong" />, errorContainer);
   });
-  expect(container.textContent).toBe("Something went wrong");
+  expect(errorContainer.textContent).toBe("Something went wrong");
 
   act(() => {
-    render(<Error value = "No results with your text…" />, container);
+    render(<Error value = "No results with your text…" />, errorContainer);
   });
-  expect(container.textContent).toBe("No results with your text…");
+  expect(errorContainer.textContent).toBe("No results with your text…");
 });
