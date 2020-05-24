@@ -57,10 +57,10 @@ export default class Favorite extends Component {
         { onMenuOpen }
 
         <div className = "favorite" style = {{left: `${left}vw`}}>
-          <div className = "favorite-header">
-            { headerContent }
-          </div>
-          { content }
+              <div className = "favorite-header">
+                    { headerContent }
+              </div>
+              { content }
         </div>
       </>
     );

@@ -30,7 +30,7 @@ export default class Categories extends Component {
     const { checked } = this.props;
 
     if (!categoryList) {
-      return <></>
+      return null
     }
 
     const category = this.renderCategory(categoryList);
@@ -41,11 +41,11 @@ export default class Categories extends Component {
           { category }
         </div>
       )
-    }else {
-      return (
-        <></>
-      )
-    };
+    }
+
+    return (
+      null
+    );
 
   }
 }

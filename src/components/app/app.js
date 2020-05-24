@@ -282,10 +282,12 @@ export default class App extends Component {
 
   render(){
 
+    const { menuOpen, allJoke, loading, error, favorite, searchNoResult } = this.state;
+
     return(
       <div className = "app">
         <div className = "app-content">
-          <Header menuOpen = { this.state.menuOpen }
+          <Header menuOpen = { menuOpen }
                   onFavoriteOpen = { this.onFavoriteOpen } />
           <div className = "app-jokes">
             <AppTitles />
@@ -295,20 +297,20 @@ export default class App extends Component {
                       onSubmit = { this.onSubmit }
                       onLabelChange = { this.onLabelChange }/>
 
-            <JokeBody allJoke = { this.state.allJoke }
+            <JokeBody allJoke = { allJoke }
                       onFavoriteJokeAdded = { this.onFavoriteJokeAdded }
                       deleteFavoriteJoke = { this.deleteFavoriteJoke }
-                      loading = { this.state.loading }
-                      error = { this.state.error }
-                      searchNoResult = { this.state.searchNoResult }
-                      favorite = { this.state.favorite }
+                      loading = { loading }
+                      error = { error }
+                      searchNoResult = { searchNoResult }
+                      favorite = { favorite }
                       setFavorite = { this.setFavorite } />
           </div>
         </div>
-        <Favorite menuOpen = { this.state.menuOpen }
+        <Favorite menuOpen = { menuOpen }
                   onFavoriteClose = { this.onFavoriteClose }
                   deleteFavoriteJoke = { this.deleteFavoriteJoke }
-                  favorite = { this.state.favorite } />
+                  favorite = { favorite } />
       </div>
     );
   };

@@ -4,9 +4,7 @@
   background: #F8F8F8;
   border-radius: 20px;
   display: grid;
-  grid-template-columns: 40px auto;
-  align-items: center;
-  grid-column-gap: 20px;
+  grid-row-gap: 10px;
 }
 .message{
   width: 40px;
@@ -25,7 +23,8 @@
 }
 .joke-card-content{
   display: grid;
-  grid-row-gap: 20px;
+  grid-template-columns: 40px auto;
+  grid-gap: 20px;
 }
 .favorite-like{
   display: grid;
@@ -45,9 +44,9 @@
   height: 17px;
   cursor: pointer;
 }
-.joke-favorite-id-value{
+.joke-id-value-updated-category{
   display: grid;
-  grid-row-gap: 10px;
+  grid-row-gap: 20px;
 }
 .joke-id-value{
   display: grid;
@@ -112,4 +111,9 @@
   border-radius: 6px;
   padding: 6px 20px;
   align-self: center;
+}
+@media (max-width: 767px) {
+  .joke-card{
+    padding: 20px;
+  }
 }

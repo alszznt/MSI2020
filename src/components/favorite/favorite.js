@@ -39,6 +39,8 @@ export default class Favorite extends Component {
 
     const { menuOpen, onFavoriteClose, favorite } = this.props
     const jokes = this.renderJokes(favorite);
+    const content = favorite.length === 0 ? <FavoriteNoResult /> : <div className = "favorite-body"> { jokes } </div>;
+    const opacityBlock = menuOpen ? <div className = "favorite-active-opacity-block" /> : null
 
     let left = '100';
 
@@ -55,28 +57,11 @@ export default class Favorite extends Component {
 
     return (
       <>
-        {
-          menuOpen ?
-          <div className = "favorite-opacity-block"
-               style = {{ display: 'block', background: 'rgba(0, 0, 0, 0.3)' }}>
-          </div>
-          :
-          <div className = "favorite-opacity-block"></div>
-        }
+        { opacityBlock }
 
         <div className = "favorite" style = {{left: `${left}vw`}}>
-
-          <FavoriteHeader onFavoriteClose = { onFavoriteClose } />
-
-          { favorite.length === 0 ?
-            <FavoriteNoResult />
-            :
-            <div className = "favorite-body">
-              { jokes }
-            </div>
-          }
-
-
+                <FavoriteHeader onFavoriteClose = { onFavoriteClose } />
+                { content }
         </div>
       </>
     );
