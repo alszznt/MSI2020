@@ -172,7 +172,8 @@ export default class App extends Component {
     this.setState({
       loading: true,
       error: false,
-      searchNoResult: false
+      searchNoResult: false,
+      searchError: false
     });
 
     if ( this.state.checked === "Random" )  {
