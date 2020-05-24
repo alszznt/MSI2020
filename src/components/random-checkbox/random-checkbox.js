@@ -6,7 +6,7 @@ export default class RandomCheckbox extends Component {
 
   render() {
 
-    const { onChecked } = this.props
+    const { onChecked, defaultChecked } = this.props
 
     return (
       <div className = "checkbox-and-content" >
@@ -14,7 +14,8 @@ export default class RandomCheckbox extends Component {
           <input type="radio"
                  name = "MSI"
                  value = "Random"
-                 onClick = { onChecked }
+                 checked = { defaultChecked }
+                 onChange = { onChecked }
                  className = "joke-checkbox-hidden" />
           <div className = "joke-checkbox" ></div>
           <div>Random</div>

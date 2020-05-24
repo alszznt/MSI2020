@@ -28,7 +28,7 @@ export default class SearchInput extends Component {
       );
     }else {
       return (
-        <></>
+        null
       );
     };
 

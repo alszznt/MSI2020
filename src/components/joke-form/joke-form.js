@@ -16,7 +16,7 @@ export default class JokeForm extends Component {
   render() {
 
     const { onSubmit, onCategorySelected, onLabelChange, state } = this.props
-    const { selectedCategory, checked, categoryList, searchValue, searchError } = state
+    const { selectedCategory, checked, categoryList, searchValue, searchError, defaultChecked } = state
 
     return (
       <form className="joke-form"
@@ -24,10 +24,11 @@ export default class JokeForm extends Component {
 
       <div className = "all-joke-checkboxes">
 
-            <RandomCheckbox onChecked = { this.onChecked } />
+            <RandomCheckbox onChecked = { this.onChecked }
+                            defaultChecked = { defaultChecked }/>
             <FromCaterogiesCheckbox onCategorySelected = { onCategorySelected }
                                     selectedCategory = { selectedCategory }
-                                    checked = {checked}
+                                    checked = { checked }
                                     categoryList = { categoryList }
                                     onChecked = { this.onChecked } />
             <SearchCheckbox searchValue = { searchValue }

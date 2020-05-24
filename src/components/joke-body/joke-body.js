@@ -11,10 +11,10 @@ export default class JokeBody extends Component {
   key = 100
 
   trasformDate(date) {
-    const lastData = +new Date(date);
-    const nowData = +new Date();
+    const lastDate = +new Date(date);
+    const newDate = +new Date();
 
-    return Math.round((nowData - lastData) / 3600000);
+    return Math.round((newDate - lastDate) / 3600000);
   };
 
   renderJokes(arr) {

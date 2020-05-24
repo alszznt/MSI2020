@@ -10,6 +10,8 @@
   padding: 8px;
   background: #fff;
   border-radius: 20px;
+  width: 40px;
+  height: 40px;
 }
 .cat-icon{
   background-image: url(../../images/cat icon.svg);

@@ -11,10 +11,12 @@
   color: #333333;
   padding: 10px 15px;
   transition: .2s;
+  box-shadow: none;
 }
 .search-input > input:focus{
   outline: none;
   border: 2px solid #333333;
+  box-shadow: none;
 }
 .search-input > input::placeholder{
   color: #ABABAB;
@@ -24,6 +26,7 @@
 }
 .error-search-input > input:focus{
   border: 2px solid #d93025;
+  box-shadow: none;
 }
 .error-search-input > input::placeholder{
   color: #d93025;

@@ -78,3 +78,6 @@
 .get-joke-button:focus{
   outline: none;
 }
+.get-joke-button:hover{
+  background: linear-gradient(92.01deg, #A5B9FF 0%, #7D99FC 100%);
+}

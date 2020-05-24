@@ -35,6 +35,9 @@ export default class Favorite extends Component {
 
     const { menuOpen, onFavoriteClose, favorite } = this.props
     const jokes = this.renderJokes(favorite);
+    const content = favorite.length === 0 ? <FavoriteNoResult /> : <FavoriteNoResult />;
+    const headerContent = window.innerWidth < 1024 ? <FavoriteHeaderContent /> : <>Favorite</>;
+    const onMenuOpen = menuOpen ? <div className = "favorite-opacity-block favorite-active-opacity-block"/> : <div className = "favorite-opacity-block"></div>
 
     let left = '100';
 
@@ -51,48 +54,41 @@ export default class Favorite extends Component {
 
     return (
       <>
-        {
-          menuOpen ?
-          <div className = "favorite-opacity-block"
-               style = {{ display: 'block', background: 'rgba(0, 0, 0, 0.3)' }}>
-          </div>
-          :
-          <div className = "favorite-opacity-block"></div>
-        }
+        { onMenuOpen }
 
         <div className = "favorite" style = {{left: `${left}vw`}}>
-
           <div className = "favorite-header">
-            {
-              window.innerWidth < 1024 ?
-              <>
-                <div/>
-                <div className = "favorite-close-button"
-                     onClick = { onFavoriteClose }>
-                  <div className = "favorite-close-button-circle"></div>
-                  <div className = "favorite-button-text">Favorite</div>
-                </div>
-              </>
-              :
-              <>Favorite</>
-            }
+            { headerContent }
           </div>
-
-
-          { favorite.length === 0 ?
-            <div className = "favorite-no-result">
-              <div className = "favorite-no-result-text">No favorites yet</div>
-              <div className = "favorite-no-result-cat"></div>
-            </div>
-            :
-            <div className = "favorite-body">
-              {jokes}
-            </div>
-          }
-
-
+          { content }
         </div>
       </>
     );
   }
+}
+
+const FavoriteHeaderContent = ( onFavoriteClose ) =>{
+  <>
+    <div/>
+    <div className = "favorite-close-button"
+         onClick = { onFavoriteClose }>
+      <div className = "favorite-close-button-circle"></div>
+      <div className = "favorite-button-text">Favorite</div>
+    </div>
+  </>
+}
+
+const FavoriteContent = (jokes) => {
+  <div className = "favorite-body">
+    { jokes }
+  </div>
+}
+
+const FavoriteNoResult = () =>{
+  return (
+    <div className = "favorite-no-result">
+      <div className = "favorite-no-result-text">No favorites yet</div>
+      <div className = "favorite-no-result-cat"></div>
+    </div>
+  );
 }

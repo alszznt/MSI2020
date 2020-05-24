@@ -16,7 +16,7 @@ export default class App extends Component {
 
   state = {
     allJoke: [],
-    checked: null,
+    checked: "Random",
     selectedCategory: null,
     searchValue: '',
     searchNoResult: false,
@@ -24,7 +24,8 @@ export default class App extends Component {
     favorite: [],
     categoryList: null,
     loading: false,
-    error: false
+    error: false,
+    defaultChecked: true
   };
 
   onCategoryChange = ( category ) => {
@@ -48,7 +49,8 @@ export default class App extends Component {
     this.setState(({ allJoke }) => {
 
       if ((this.state.favorite !== undefined)
-          && ((this.state.favorite.findIndex((el) => el.id === newJoke.id)) !== -1))
+          && ((this.state.favorite.findIndex
+            ((el) => el.id === newJoke.id)) !== -1))
       {
         newJoke.favorite = true
       }
@@ -74,16 +76,19 @@ export default class App extends Component {
       });
     }else {
 
-      this.setState(({ allJoke }) => {
+      for (let i = 0; i < newJoke.length; i++) {
 
-        const newArr = [
-          ...newJoke
-        ];
-
-        return {
-          allJoke: newArr,
-          jokeLoading: false
+        if ((this.state.favorite !== undefined) &&
+            ((this.state.favorite.findIndex
+              ((el) => el.id === newJoke[i].id)) !== -1))
+        {
+          newJoke[i].favorite = true
         }
+      }
+
+      this.setState({
+        allJoke: newJoke,
+        jokeLoading: false
       });
     }
   }
@@ -121,7 +126,17 @@ export default class App extends Component {
   };
 
   onChecked = (checked) => {
-    this.setState({ checked });
+    if (checked === "Random"){
+      this.setState({
+        defaultChecked: true,
+        checked: checked
+      });
+    }else {
+      this.setState({
+        defaultChecked: false,
+        checked: checked
+      });
+    }
   };
 
   onCategorySelected = (category) => {
@@ -144,8 +159,7 @@ export default class App extends Component {
     if ( this.state.checked === "Random" )  {
       this.onRandomJoke()
     }
-    else if ( this.state.checked === "From categories" ) {
-
+    if ( this.state.checked === "From categories" ) {
       if ( !this.state.selectedCategory ){
         this.setState({
           selectedCategory: this.state.categoryList[0]
@@ -155,10 +169,8 @@ export default class App extends Component {
       else {
         this.onCategoriesJoke();
       }
-
     }
-    else if ( this.state.checked === "Search" ) {
-
+    if ( this.state.checked === "Search" ) {
       if (this.state.searchValue.length < 3){
         this.setState({
           searchValue: '',
@@ -173,11 +185,6 @@ export default class App extends Component {
           loading: false
         });
       }
-    }else {
-      console.log("choose joke type");
-      this.setState({
-        loading: false
-      });
     }
 
   };
@@ -295,7 +302,7 @@ export default class App extends Component {
                       error = { this.state.error }
                       searchNoResult = { this.state.searchNoResult }
                       favorite = { this.state.favorite }
-                      setFavorite = { this.setFavorite }/>
+                      setFavorite = { this.setFavorite } />
           </div>
         </div>
         <Favorite menuOpen = { this.state.menuOpen }

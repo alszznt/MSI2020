@@ -9,6 +9,7 @@ export default class JokeCard extends Component {
 
     const { joke, updateDate, deleteFavoriteJoke, onFavoriteJokeAdded } = this.props;
     const { favorite, url, id, value, categories } = joke;
+    const category = categories.length === 0 ? null : <div className = "joke-category"> { categories } </div>;
 
     return (
 
@@ -51,14 +52,7 @@ export default class JokeCard extends Component {
             <div className = "joke-updatedAt">
               Last update: { updateDate } hours ago
             </div>
-            {
-              ( categories.length === 0 ) ?
-                <></>
-                :
-                <div className = "joke-category">
-                  { categories }
-                </div>
-            }
+            { category }
           </div>
         </div>
 
